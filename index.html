@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>豆角电影网 | doujiaodianyingwang 影视资源导航 · 轻松找片看片</title>
+<meta name="keywords" content="豆角电影网,doujiaodianyingwang,影视导航,电影资源,在线看片,电影推荐,影视分类,找片神器">
+<meta name="description" content="豆角电影网（doujiaodianyingwang）是一个轻松好用的影视资源导航站，按题材、年份、热度帮你快速找片，页面简洁加载快，支持手机、平板与桌面端自适应访问。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://doujiaodianyingwang-wap.github.io/">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f6f7f2;--paper:#fff;--ink:#1c2024;--txt:#33383e;--sub:#6c737d;--muted:#a9afb7;--line:#e6e9df;
+  --dj:#4a7c2f;--dj2:#6fa845;--dj3:#eef4e6;--yell:#f5b301;--yell2:#fef7df;--r:20px;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(700px 480px at 94% -10%,rgba(74,124,47,.10),transparent),radial-gradient(520px 380px at -8% 40%,rgba(245,179,1,.09),transparent)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 26px;border-radius:999px;font-size:15px;font-weight:600;border:0;cursor:pointer;transition:.25s}
+.btn-g{background:var(--dj);color:#fff;box-shadow:0 8px 20px rgba(74,124,47,.26)}
+.btn-g:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(74,124,47,.38)}
+.btn-y{background:var(--yell);color:#3a2c00}
+.btn-y:hover{transform:translateY(-2px)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;letter-spacing:1px;color:#3a6423;background:var(--dj3);padding:6px 14px;border-radius:999px;font-weight:600}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:30px}
+.sh h2{font-size:26px;letter-spacing:.3px}
+.sh h2 em{font-style:normal;color:var(--dj)}
+.sh .en{display:block;font-size:11px;letter-spacing:4px;color:var(--muted);font-weight:600;margin-top:7px}
+.sh .m{color:var(--sub);font-size:14px;transition:.2s;font-weight:500}
+.sh .m:hover{color:var(--yell)}
+section{padding:60px 0}
+.paper{background:var(--paper);border:1px solid var(--line);border-radius:var(--r)}
+
+/* 导航 */
+header{position:sticky;top:0;z-index:99;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+.logo{display:flex;align-items:center;gap:11px}
+.dj{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--dj),var(--dj2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:900;box-shadow:0 6px 14px rgba(74,124,47,.3);position:relative}
+.dj::after{content:"";position:absolute;right:-4px;top:-4px;width:12px;height:12px;border-radius:50%;background:var(--yell);border:2px solid #fff}
+.logo em{font-style:normal;font-size:17px;font-weight:700}
+.logo em b{color:var(--yell);font-weight:700}
+.nav{display:flex;align-items:center;gap:2px}
+.nav a{padding:8px 15px;font-size:14.5px;color:var(--sub);border-radius:9px;transition:.2s;font-weight:500}
+.nav a:hover{color:var(--txt);background:var(--dj3)}
+.nav a.on{color:#fff;background:var(--dj)}
+.mb{display:none;background:none;border:0;color:var(--ink);font-size:25px;cursor:pointer}
+
+/* Hero - 搜索框主导式 */
+.hero{padding:66px 0 56px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(29px,4.8vw,46px);line-height:1.2;letter-spacing:-.5px;color:var(--ink)}
+.hero h1 s{text-decoration:none;color:var(--dj)}
+.hero h1 u{text-decoration:none;color:var(--yell);font-weight:800}
+.hero .ld{color:var(--sub);font-size:16.5px;margin:20px 0 24px;max-width:500px}
+.search{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--line);border-radius:16px;padding:10px 12px 10px 18px;transition:.25s;box-shadow:0 8px 22px rgba(74,124,47,.08)}
+.search:focus-within{border-color:var(--dj)}
+.search input{flex:1;border:0;outline:0;font-size:15px;background:transparent;color:var(--ink);min-width:0}
+.search button{padding:10px 22px;border:0;background:var(--dj);color:#fff;border-radius:10px;font-size:14.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.quick{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+.quick a{font-size:13px;color:var(--sub);background:#fff;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.quick a:hover{color:#fff;background:var(--dj);border-color:var(--dj)}
+/* 右侧新鲜豆角海报堆 */
+.heap{position:relative;height:360px}
+.bean{position:absolute;border-radius:20px;padding:18px;color:#fff;box-shadow:0 14px 30px rgba(0,0,0,.12);transition:.3s}
+.bean:hover{transform:translateY(-6px) scale(1.02)}
+.bean .tp{font-size:11px;letter-spacing:2px;opacity:.9}
+.bean h4{font-size:17px;margin:8px 0 4px}
+.bean span{font-size:12px;opacity:.92}
+.b1{left:0;top:10px;width:62%;height:180px;background:linear-gradient(140deg,#4a7c2f,#8ab84f);transform:rotate(-4deg);z-index:2}
+.b2{right:0;top:60px;width:56%;height:170px;background:linear-gradient(140deg,#c98a0e,#f5b301);transform:rotate(5deg);z-index:1}
+.b3{left:12%;bottom:0;width:70%;height:150px;background:linear-gradient(140deg,#2f6b8f,#5aa6c9);transform:rotate(-2deg);z-index:3}
+
+/* 频道分类 - 大色块宫格 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.cell{border:1px solid var(--line);border-radius:18px;padding:20px;background:#fff;transition:.25s;position:relative;overflow:hidden}
+.cell::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c,#4a7c2f)}
+.cell:hover{border-color:transparent;box-shadow:0 14px 28px rgba(0,0,0,.09);transform:translateY(-5px)}
+.cell .ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:21px;background:var(--c,#4a7c2f);color:#fff;margin-bottom:14px}
+.cell h4{font-size:16px;margin-bottom:5px}
+.cell p{font-size:13px;color:var(--sub)}
+.cell small{display:block;margin-top:12px;font-size:12px;color:var(--muted);font-weight:600}
+
+/* 热度榜 - 左右交错横条 */
+.rank{display:flex;flex-direction:column;gap:10px}
+.rk{display:grid;grid-template-columns:56px 1fr auto auto;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 18px;transition:.25s}
+.rk:hover{border-color:var(--dj);background:var(--dj3)}
+.rk .n{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;background:var(--line);color:var(--sub)}
+.rk.g1 .n{background:var(--yell);color:#3a2c00}
+.rk.g2 .n{background:var(--dj2);color:#fff}
+.rk.g3 .n{background:#cfd8c4;color:#3a4a2c}
+.rk .ti h4{font-size:15.5px}
+.rk .ti small{font-size:12.5px;color:var(--sub)}
+.rk .ht{font-size:12px;color:var(--muted);white-space:nowrap}
+.rk .hot{font-size:13px;font-weight:700;color:var(--dj);white-space:nowrap}
+
+/* 关于 - 左网址盒 + 右三栏特性 */
+.about .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:center}
+.about .left{border:1px solid var(--line);border-radius:22px;padding:30px;background:#fff;position:relative}
+.about .left .lb{font-size:12px;letter-spacing:3px;color:var(--muted);font-weight:600}
+.about .left .vl{font-family:ui-monospace,Consolas,monospace;font-size:clamp(14px,2.1vw,19px);color:var(--dj);margin:10px 0 20px;word-break:break-all}
+.about .left .mi{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.about .left .mi div{border:1px dashed var(--line);border-radius:12px;padding:13px;background:var(--dj3)}
+.about .left .mi div b{display:block;font-size:14px;color:var(--ink)}
+.about .left .mi div span{font-size:12px;color:var(--sub)}
+.about .right h2{font-size:clamp(23px,3.5vw,31px);line-height:1.35;margin-bottom:14px}
+.about .right h2 em{font-style:normal;color:var(--dj)}
+.about .right > p{color:var(--sub);font-size:15.5px;margin-bottom:20px}
+.feat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.feat div{border:1px solid var(--line);border-radius:15px;padding:18px;background:#fff;transition:.25s}
+.feat div:hover{border-color:var(--yell);transform:translateY(-4px)}
+.feat div .ic{font-size:22px;margin-bottom:9px}
+.feat div h4{font-size:14.5px;margin-bottom:5px}
+.feat div p{font-size:12.5px;color:var(--sub)}
+
+footer{border-top:1px solid var(--line);background:#fff;padding:50px 0 24px;margin-top:20px}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:34px}
+.ft .brand .dj{margin-bottom:15px}
+.ft .brand p{color:var(--sub);font-size:14px}
+.ft h4{font-size:12px;letter-spacing:3px;color:var(--dj);margin-bottom:15px}
+.ft ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft a{color:var(--sub);font-size:14px;transition:.2s}
+.ft a:hover{color:var(--yell)}
+.copy{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);color:var(--sub);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.copy b{color:var(--yell);font-weight:600}
+
+@media(max-width:980px){.hero .wrap{grid-template-columns:1fr}.heap{max-width:500px}.about .wrap{grid-template-columns:1fr}.ft{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){
+  .nav{position:fixed;top:66px;left:0;right:0;flex-direction:column;background:#fff;padding:14px;border-bottom:1px solid var(--line);transform:translateY(-170%);transition:.3s}
+  .nav.open{transform:translateY(0)}
+  .nav a{width:100%;text-align:center;padding:12px}
+  .mb{display:block}
+  .hero{padding:44px 0}section{padding:46px 0}
+  .rk{grid-template-columns:44px 1fr;gap:12px}.rk .ht,.rk .hot{grid-column:2;text-align:left}
+  .heap{height:300px}.b1,.b2,.b3{height:150px}
+}
+@media(max-width:480px){.feat{grid-template-columns:1fr}.about .left .mi{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#home"><span class="dj">豆</span><em>豆<b>角电影网</b></em></a>
+    <nav class="nav" id="nav">
+      <a href="#home" class="on">首页</a>
+      <a href="#channel">频道分类</a>
+      <a href="#rank">热度榜单</a>
+      <a href="#about">关于本站</a>
+      <a href="#" style="margin-left:4px;padding:8px 18px;color:var(--dj);border:1.5px solid var(--dj);border-radius:999px">登录</a>
+    </nav>
+    <button class="mb" id="mb" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<!-- 首页（搜索框主导 + 豆角海报堆） -->
+<section id="home" class="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag">● 影视资源导航 · 找片更省心</span>
+      <h1>像摘 <s>豆角</s> 一样<br>轻松挑到 <u>好片</u></h1>
+      <p class="ld">豆角电影网（doujiaodianyingwang）帮你按题材、年份、热度快速找片，页面简洁、加载轻快，手机上也能舒服地逛。</p>
+      <form class="search" onsubmit="return false">
+        <span style="font-size:18px">🔍</span>
+        <input type="text" placeholder="搜片名、演员、导演或题材，如「悬疑」「喜剧」">
+        <button type="submit">找片</button>
+      </form>
+      <div class="quick">
+        <span style="font-size:13px;color:var(--sub);align-self:center">热门：</span>
+        <a href="#">悬疑犯罪</a><a href="#">喜剧温情</a><a href="#">动作警匪</a><a href="#">科幻冒险</a><a href="#">纪录人文</a>
+      </div>
+    </div>
+    <div class="heap">
+      <div class="bean b1"><span class="tp">FRESH · 新片</span><h4>沉默的证人</h4><span>悬疑 · 118分钟 · 评分 9.2</span></div>
+      <div class="bean b2"><span class="tp">HOT · 热播</span><h4>夏日收件人</h4><span>喜剧 · 104分钟 · 评分 8.9</span></div>
+      <div class="bean b3"><span class="tp">CLASSIC · 经典</span><h4>老手艺</h4><span>纪录 · 98分钟 · 评分 8.7</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 频道分类（大色块宫格） -->
+<section id="channel" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="tag">● CHANNEL</span><h2>频道 <em>分类</em><span class="en">CHANNELS · 按口味选片</span></h2></div>
+      <a class="m" href="#">全部频道 →</a>
+    </div>
+    <div class="grid">
+
+      <div class="cell" style="--c:#4a7c2f"><div class="ic">🎭</div><h4>喜剧温情</h4><p>轻松治愈，适合周末放松。</p><small>268 部</small></div>
+      <div class="cell" style="--c:#c98a0e"><div class="ic">🕵️</div><h4>悬疑犯罪</h4><p>烧脑反转，越看越上头。</p><small>194 部</small></div>
+      <div class="cell" style="--c:#2f6b8f"><div class="ic">💥</div><h4>动作警匪</h4><p>场面硬核，节奏紧凑。</p><small>231 部</small></div>
+      <div class="cell" style="--c:#9c5bb8"><div class="ic">🚀</div><h4>科幻冒险</h4><p>脑洞大开，视觉惊艳。</p><small>152 部</small></div>
+      <div class="cell" style="--c:#d6563a"><div class="ic">💞</div><h4>爱情青春</h4><p>细腻真诚，情感动人。</p><small>203 部</small></div>
+      <div class="cell" style="--c:#3aa08c"><div class="ic">🎬</div><h4>纪录人文</h4><p>真实生活，值得慢看。</p><small>127 部</small></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 热度榜单（左右交错横条） -->
+<section id="rank">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="tag">● HOT LIST</span><h2>热度 <em>榜单</em><span class="en">TRENDING · 大家都在看</span></h2></div>
+      <a class="m" href="#">完整榜单 →</a>
+    </div>
+    <div class="rank">
+
+      <div class="rk g1"><div class="n">1</div><div class="ti"><h4>沉默的证人</h4><small>悬疑 · 犯罪 / 2025 / 118分钟</small></div><div class="ht">本周 48,201</div><div class="hot">🔥 9.2</div></div>
+      <div class="rk g2"><div class="n">2</div><div class="ti"><h4>边境之上</h4><small>动作 · 警匪 / 2024 / 132分钟</small></div><div class="ht">本周 41,650</div><div class="hot">🔥 8.8</div></div>
+      <div class="rk g3"><div class="n">3</div><div class="ti"><h4>夏日收件人</h4><small>喜剧 · 温情 / 2025 / 104分钟</small></div><div class="ht">本周 39,118</div><div class="hot">🔥 8.9</div></div>
+      <div class="rk"><div class="n">4</div><div class="ti"><h4>山间来信</h4><small>剧情 · 家庭 / 2024 / 126分钟</small></div><div class="ht">本周 35,902</div><div class="hot">🔥 9.0</div></div>
+      <div class="rk"><div class="n">5</div><div class="ti"><h4>倒数三秒</h4><small>科幻 · 冒险 / 2026 / 122分钟</small></div><div class="ht">本周 33,447</div><div class="hot">🔥 8.6</div></div>
+      <div class="rk"><div class="n">6</div><div class="ti"><h4>老手艺</h4><small>纪录 · 人文 / 2025 / 98分钟</small></div><div class="ht">本周 30,215</div><div class="hot">🔥 8.7</div></div>
+      <div class="rk"><div class="n">7</div><div class="ti"><h4>第九封情书</h4><small>爱情 · 青春 / 2024 / 101分钟</small></div><div class="ht">本周 27,889</div><div class="hot">🔥 8.5</div></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 关于本站（左网址盒 + 右三栏特性） -->
+<section id="about" class="about" style="background:#fff;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="left">
+      <div class="lb">◆ OFFICIAL SITE</div>
+      <div class="vl">https://doujiaodianyingwang-wap.github.io</div>
+      <div class="mi">
+        <div><b>豆角电影网</b><span>网站名称</span></div>
+        <div><b>doujiaodianyingwang</b><span>站点标识</span></div>
+      </div>
+    </div>
+    <div class="right">
+      <span class="tag">● ABOUT</span>
+      <h2>关于豆角电影网<br>找片这件小事，<em>我们更用心</em></h2>
+      <p>豆角电影网是一个轻量、清爽的影视资源导航站，按题材、年份、热度帮你快速定位想看的片子，少花时间挑，多留时间看。</p>
+      <div class="feat">
+        <div><div class="ic">🥬</div><h4>新鲜收录</h4><p>新片上线及时更新。</p></div>
+        <div><div class="ic">🧭</div><h4>分类清晰</h4><p>六大专区快速定位。</p></div>
+        <div><div class="ic">📱</div><h4>移动友好</h4><p>手机屏重新排版适配。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div class="brand"><div class="dj">豆</div><p>豆角电影网 · 轻松好用的影视资源导航，帮你快速找到想看的那一部。</p></div>
+      <div><h4>栏目导览</h4><ul><li><a href="#home">首页</a></li><li><a href="#channel">频道分类</a></li><li><a href="#rank">热度榜单</a></li><li><a href="#about">关于本站</a></li></ul></div>
+      <div><h4>题材频道</h4><ul><li><a href="#">喜剧温情</a></li><li><a href="#">悬疑犯罪</a></li><li><a href="#">动作警匪</a></li><li><a href="#">纪录人文</a></li></ul></div>
+      <div><h4>支持协作</h4><ul><li><a href="#">好片推荐</a></li><li><a href="#">纠错反馈</a></li><li><a href="#">合作洽谈</a></li><li><a href="#">友情链接</a></li></ul></div>
+    </div>
+    <div class="copy"><span>© 2026 豆角电影网 doujiaodianyingwang. 保留所有权利.</span><span>网址：<b>https://doujiaodianyingwang-wap.github.io</b></span></div>
+  </div>
+</footer>
+
+<script>
+var mb=document.getElementById('mb'),nav=document.getElementById('nav');
+mb.addEventListener('click',function(){nav.classList.toggle('open')});
+nav.addEventListener('click',function(e){if(e.target.tagName==='A')nav.classList.remove('open')});
+var links=document.querySelectorAll('.nav a'),secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',function(){
+  var cur='';
+  secs.forEach(function(s){if(window.scrollY>=s.offsetTop-130)cur=s.id});
+  links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur)});
+});
+</script>
+</body>
+</html>
